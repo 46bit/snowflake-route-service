@@ -65,5 +65,10 @@ func applySnowflakes(response *http.Response) error {
 	}
 
 	response.Body = ioutil.NopCloser(bytes.NewReader(html))
+	response.ContentLength = int64(len(html))
+	if _, ok := response.Header["Content-Length"]; ok {
+		response.Header["Content-Length"][0] = string(len(html))
+	}
+
 	return nil
 }
