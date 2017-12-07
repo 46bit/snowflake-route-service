@@ -1,0 +1,5 @@
+---
+applications:
+- env:
+    GOVERSION: go1.9
+    GOPACKAGENAME: github.com/46bit/snowflake-route-service
