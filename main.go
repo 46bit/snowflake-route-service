@@ -79,8 +79,8 @@ const (
 <style>
 /* customizable snowflake styling */
 .snowflake {
-  color: #fff;
-  font-size: 1em;
+  color: #d7fbff;
+  font-size: 2em;
   font-family: Arial;
   text-shadow: 0 0 1px #000;
 }
