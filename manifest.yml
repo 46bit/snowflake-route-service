@@ -1,5 +1,8 @@
 ---
 applications:
-- env:
-    GOVERSION: go1.9
+- name: snowflake-route-service
+  instances: 3
+  memory: 128M
+  env:
+    GOVERSION: go1.13
     GOPACKAGENAME: github.com/46bit/snowflake-route-service

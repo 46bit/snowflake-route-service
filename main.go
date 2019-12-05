@@ -3,6 +3,7 @@ package main
 import (
 	"bytes"
 	"crypto/tls"
+	"fmt"
 	"github.com/PuerkitoBio/goquery"
 	"io/ioutil"
 	"log"
@@ -54,7 +55,7 @@ func applySnowflakes(response *http.Response) error {
 
 	bodyReader := bytes.NewBuffer(html)
 	doc, err := goquery.NewDocumentFromReader(bodyReader)
-	if err == nil {
+	if err == nil && doc.Find("header").Length() > 0 {
 		doc.Find("body").AppendHtml(snowHTML)
 		htmlString, err := doc.Html()
 		if err != nil {
@@ -67,7 +68,7 @@ func applySnowflakes(response *http.Response) error {
 	response.Body = ioutil.NopCloser(bytes.NewReader(html))
 	response.ContentLength = int64(len(html))
 	if _, ok := response.Header["Content-Length"]; ok {
-		response.Header["Content-Length"][0] = string(len(html))
+		response.Header["Content-Length"][0] = fmt.Sprintf("%d", len(html))
 	}
 
 	return nil
